@@ -170,7 +170,7 @@ public class ListSimpleLinkedFull<E> implements ListTAD<E>{
     @Override
     public E get(int pos) {
             E res = null;
-            Node aux, ant;             //AUXILIAR
+            Node aux;             //AUXILIAR
             int i;
 
             if ((pos >= 0) && (pos < qtdElem))      //SE POS ESTA DENTRO DA QDT DA LISTA
