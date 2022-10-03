@@ -1,35 +1,41 @@
 package br.pucrs.adt;
 
-public class ListSimpleLinked<E> implements ListTAD<E>{
+public class ListSimpleLinkedFull<E> implements ListTAD<E> {
 
-    private class Node{                    //Criaçao do Nodo
+    private class Node {                    //Criaçao do Nodo
         private Node refNext;     //Referencia do proximo Nodo
         private E element;      //Elemento do Nodo
 
-        public Node(){
+        public Node() {
             element = null;
             refNext = null;
         }
 
-        public Node(E e){
+        public Node(E e) {
             element = e;
             refNext = null;
         }
 
-        public Node(E e, Node next){
+        public Node(E e, Node next) {
             element = e;
             refNext = next;
         }
 
-        public void setElement(E element){
+        public void setElement(E element) {
             this.element = element;
         }
 
-        public E getElement(){return element;}
+        public E getElement() {
+            return element;
+        }
 
-        public void setNext(Node n){refNext = n;}
+        public void setNext(Node n) {
+            refNext = n;
+        }
 
-        public Node getNext(){return refNext;}
+        public Node getNext() {
+            return refNext;
+        }
 
     }
 
@@ -39,15 +45,14 @@ public class ListSimpleLinked<E> implements ListTAD<E>{
     @Override
     public void add(E element) {
         Node novo = new Node((element));
-        Node aux , ant;
+        Node aux, ant;
 
         if (refHead == null) {        //Se não houver inicial
             refHead = novo;         //Determina o novo elemento como inicial
-        }
-        else{                           //Se houver inicial
-            ant  = aux = refHead;       //
+        } else {                           //Se houver inicial
+            ant = aux = refHead;       //
 
-            while(aux != null){       //Roda ate o aux ser nulo = ultimo
+            while (aux != null) {       //Roda ate o aux ser nulo = ultimo
                 ant = aux;
                 aux = aux.getNext();
             }
@@ -81,27 +86,25 @@ public class ListSimpleLinked<E> implements ListTAD<E>{
         Node ant, novo, prox = null;        //CRIA 3 AUXILIARES
         int i;
 
-        if((index >= 0) && (index <= qtdElem)){     //SE A POSIÇAO FOR MAIOR OU IGUAL A 0 E MENOR OU IGUAL A QTD
+        if ((index >= 0) && (index <= qtdElem)) {     //SE A POSIÇAO FOR MAIOR OU IGUAL A 0 E MENOR OU IGUAL A QTD
             novo = new Node(element);               //DE ELEMENTOS CRIA UM NODO COM O ELEMENTO ESCOLHIDO
 
-            if(index == 0){                         //SE A POSIÇAO FOR IGUAL A ZERO
+            if (index == 0) {                         //SE A POSIÇAO FOR IGUAL A ZERO
                 novo.setNext(refHead);              //DETERMINAR O NEXT DO NODO COMO O ANTIGO INICIAL
                 refHead = novo;                     //E TRANSFORMA O INICIAL NO NODO
-            }
-            else {                                  //SE FOR DIFERENTE DE ZERO
+            } else {                                  //SE FOR DIFERENTE DE ZERO
                 ant = refHead;                      //DETERMINA O INICIAL COMO ANTERIOR
                 for (i = 1; i < index; i++)         //RODA UM FOR O NUMERO DE VEZES BASEADO NA POSIÇAO DESEJADA
                     ant = ant.getNext();            //TRANSFORMANDO O ANTERIOR NO NEXT PARA PERCORRER A LISTA
-                                                //CHEGA NA POSIÇAO
+                //CHEGA NA POSIÇAO
                 prox = ant.getNext();           //CRIA UMA REFERENCIA DO NEXT DA POS EM PROX
                 ant.setNext(novo);              //DETERMINAR O ANT COMO O ELEMENTO ESCOLHIDO
                 novo.setNext(prox);              //COLOCA REFERENCIA DO PROX NA LISTA DPS DO ESCOLHIDO
             }
 
             qtdElem++;   //AUMENTA A QTD DE ELEMENTOS
-        }
-        else
-            throw(new IndexOutOfBoundsException());
+        } else
+            throw (new IndexOutOfBoundsException());
     }
 
     @Override
@@ -110,18 +113,17 @@ public class ListSimpleLinked<E> implements ListTAD<E>{
         E auxD = null;
         int i;
 
-        if((pos >= 0) && (pos <= qtdElem)){  //SE A POSIÇAO ESTIVER ENTRE 0 E QTD ELEMENTOS
-            if(pos == 0){                       //SE POS = 0
+        if ((pos >= 0) && (pos <= qtdElem)) {  //SE A POSIÇAO ESTIVER ENTRE 0 E QTD ELEMENTOS
+            if (pos == 0) {                       //SE POS = 0
                 auxD = refHead.getElement();    //COLOCA O ELEMENTO DE REFHEAD EM AUXD
                 refHead = refHead.getNext();    //SUBSTITUI O REFHEAD PELA REFERENCIA DO PROXIMO NODO TORNANDO ELE INICIAL
-            }
-            else{                           //SE FOR MAIOR Q 0
+            } else {                           //SE FOR MAIOR Q 0
                 ant = aux = refHead;                      //CRIA AUXILIAR
-                for (i = 1 ; i <= pos; i++){              //PERCORRE A LISTA ATE A POSIÇAO
+                for (i = 1; i <= pos; i++) {              //PERCORRE A LISTA ATE A POSIÇAO
                     ant = aux;                            //ANTERIOR VIRANDO O AUX
                     aux = aux.getNext();                  //E AUX VIRANDO O PROX
                 }
-                                                    //APOS PERCORRER E CHEGAR NA POSIÇAO
+                //APOS PERCORRER E CHEGAR NA POSIÇAO
                 auxD = aux.getElement();            //COLOCA O ELEMENTO DE AUX EM AUXD
                 prox = aux.getNext();            //TRANSFORMA O PROX NO NEXT DO AUX
 
@@ -139,12 +141,12 @@ public class ListSimpleLinked<E> implements ListTAD<E>{
         Node aux, ant;                      //AUXILIARES
 
         ant = aux = refHead;                      //AUXILIARES IGUAIS A REFHEAD
-        while( aux != null && !aux.getElement().equals(element)){      //ENQUANTO AUX FOR DIFERENTE DE NULO E DO ELEMENTO
+        while (aux != null && !aux.getElement().equals(element)) {      //ENQUANTO AUX FOR DIFERENTE DE NULO E DO ELEMENTO
             ant = aux;                                                 //PERCORRE A LISTA
             aux = aux.getNext();
         }
-                                            //LISTA PERCORRIDA ATE O ELEMENTO ENCONTRADO OU FIM DELA
-        if(aux != null) {                    //SE AUX NAO FOR NULO
+        //LISTA PERCORRIDA ATE O ELEMENTO ENCONTRADO OU FIM DELA
+        if (aux != null) {                    //SE AUX NAO FOR NULO
             res = aux.getElement();            //COLOCA O ELEMENTO DE AUX EM RES
             qtdElem--;                          //DIMINUI QTD DE ELEMENTO
 
@@ -166,38 +168,36 @@ public class ListSimpleLinked<E> implements ListTAD<E>{
     }
 
 
-
     @Override
     public E get(int pos) {
-            E res = null;
-            Node aux;             //AUXILIAR
-            int i;
+        E res = null;
+        Node aux;             //AUXILIAR
+        int i;
 
-            if ((pos >= 0) && (pos < qtdElem))      //SE POS ESTA DENTRO DA QDT DA LISTA
+        if ((pos >= 0) && (pos < qtdElem))      //SE POS ESTA DENTRO DA QDT DA LISTA
+        {
+            if (refHead != null)     //SE O INICIAL NAO ESTIVER VAZIO
             {
-                if(refHead != null)     //SE O INICIAL NAO ESTIVER VAZIO
-                {
-                    aux = refHead;                      //AUXILIAR IGUAL AO INICIAL
-                    for(i = 1 ; i <= pos; i++)         //PERCORRE A LISTA ATE A POSIÇAO
-                        aux = aux.getNext();
+                aux = refHead;                      //AUXILIAR IGUAL AO INICIAL
+                for (i = 1; i <= pos; i++)          //PERCORRE A LISTA ATE A POSIÇAO
+                    aux = aux.getNext();
 
-                    res = aux.getElement();            //COLOCA O ELEMENTO DE AUX EM RES
-                }
+                res = aux.getElement();            //COLOCA O ELEMENTO DE AUX EM RES
             }
-            else
-                throw(new IndexOutOfBoundsException());
+        } else
+            throw (new IndexOutOfBoundsException());
 
-            return res;          //RETORNA RES MOSTRANDO O ELEMENTO NA POSIÇAO DA LISTA COLOCADA NO PARAMETRO
-        }
+        return res;          //RETORNA RES MOSTRANDO O ELEMENTO NA POSIÇAO DA LISTA COLOCADA NO PARAMETRO
+    }
 
     @Override
     public void set(int index, E element) {
         Node aux = refHead;     //CRIA AUXILIAR COMO INICIAL
 
-        for(int i = 1 ; i <= index; i++)
+        for (int i = 1; i <= index; i++)
             aux = aux.getNext();           // PERCORRE A LISTA ATE A POSIÇAO
 
-        if(aux != null)                   //SE AUX NAO FOR NULO
+        if (aux != null)                   //SE AUX NAO FOR NULO
             aux.setElement(element);        //SETA ELEMENTO NA POSIÇAO
 
         else
@@ -207,14 +207,14 @@ public class ListSimpleLinked<E> implements ListTAD<E>{
     @Override
     public E search(E element) {
 
-        Node aux = refHead , ant;
+        Node aux = refHead, ant;
 
-        while( aux != null && !aux.getElement().equals(element)){      //ENQUANTO AUX FOR DIFERENTE DE NULO E DO ELEMENTO
+        while (aux != null && !aux.getElement().equals(element)) {      //ENQUANTO AUX FOR DIFERENTE DE NULO E DO ELEMENTO
             ant = aux;                                                 //PERCORRE A LISTA
             aux = aux.getNext();
         }
 
-        if(aux != null){
+        if (aux != null) {
             return aux.getElement();
         }
         return null;
@@ -222,7 +222,7 @@ public class ListSimpleLinked<E> implements ListTAD<E>{
 
     @Override
     public boolean isEmpty() {
-        if(refHead == null){
+        if (refHead == null) {
             return true;
         }
         return false;
@@ -238,8 +238,8 @@ public class ListSimpleLinked<E> implements ListTAD<E>{
         int cont = 0;
         Node aux = refHead, ant;
 
-        for(int i = 0; i < qtdElem; i++){
-            if(aux.getElement().equals(element)){  //VERIFICA SE O ELEMENTO É IGUAL AO QUE ESTA NO NODO
+        for (int i = 0; i < qtdElem; i++) {
+            if (aux.getElement().equals(element)) {  //VERIFICA SE O ELEMENTO É IGUAL AO QUE ESTA NO NODO
                 cont++;             //SE FOR CONTA 1
             }
             ant = aux;                                                 //PERCORRE A LISTA
@@ -269,7 +269,7 @@ public class ListSimpleLinked<E> implements ListTAD<E>{
 
         Node aux = refHead, ant;
 
-        while(aux.getNext() != null){
+        while (aux.getNext() != null) {
             ant = aux;
             aux = aux.getNext();
         }
@@ -279,21 +279,56 @@ public class ListSimpleLinked<E> implements ListTAD<E>{
 
     @Override
     public E removeFirst() {
-        return null;
+        E res = null;
+        Node aux;
+
+        if (refHead == null) {
+            return null;
+        } else {
+            res = refHead.getElement();
+            aux = refHead.getNext();
+
+            refHead = aux;
+            return res;
+        }
+
     }
 
     @Override
     public E removeLast() {
-        return null;
+        E auxD = null;
+        Node aux;
+
+        if (refHead != null) {
+            if (refHead.getNext() == null) {
+                auxD = refHead.getElement();
+                refHead = null;
+            } else {
+                aux = refHead;
+                while (aux.getNext().getNext() != null)
+                    aux = aux.getNext();
+
+                auxD = aux.getNext().getElement();
+                aux.setNext(null);
+            }
+            qtdElem--;
+        }
+        return auxD;
     }
 
     @Override
     public E getFirst() {
-        return null;
+        return refHead.getElement();
     }
+
 
     @Override
     public E getLast() {
-        return null;
+        Node aux = refHead, ant;
+        for (int i = 0; i < qtdElem; i++) {
+            ant = aux;
+            aux = aux.getNext();
+        }
+        return aux.getElement();
     }
 }
