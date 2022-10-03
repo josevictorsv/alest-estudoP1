@@ -1,4 +1,4 @@
-package br.pucrs.adt.tests.progs;
+package br.pucrs.adt;
 import br.pucrs.adt.*;
 
 import java.io.*;
@@ -26,22 +26,22 @@ public static void mostraLista(ListTAD <String> l)
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+
 		FileOutputStream saida = null;
 		ObjectOutputStream oSaida = null;
 		FileInputStream entrada = null;
 		ObjectInputStream oEntrada = null;
 
-									//
-		ListTAD <String> l = new ListSimpleLinkedFull<>();	// = new SUA CLASSE AQUI;
+		//
+		ListTAD<String> l = new ListSimpleLinkedFull<>();    // = new SUA CLASSE AQUI;
 //		ListTAD <String> l = new ListArray<>(100);	// = new SUA CLASSE AQUI;
-									//
+		//
 		String s1 = new String("a");
 		String s2 = new String("b");
 		String s3 = new String("c");
 		String s4 = new String("d");
 		String s5 = new String("e");
-		
+
 //add e remove(size()-1)		
 		System.out.println("\n\nadd e remove(size()-1)\n");
 		l.add(s1);
@@ -50,37 +50,36 @@ public static void mostraLista(ListTAD <String> l)
 		l.add(s4);
 		l.add(s5);
 		mostraLista(l);
-		
-		l.remove(l.size()-1);
+
+		l.remove(l.size() - 1);
 		mostraLista(l);
-		l.remove(l.size()-1);
+		l.remove(l.size() - 1);
 		mostraLista(l);
-		l.remove(l.size()-1);
+		l.remove(l.size() - 1);
 		mostraLista(l);
-		l.remove(l.size()-1);
+		l.remove(l.size() - 1);
 		mostraLista(l);
-		l.remove(l.size()-1);
+		l.remove(l.size() - 1);
 		mostraLista(l);
 
 
 //-------------------------------		
 //		add(0) e remove(0)		
 		System.out.println("\n\nadd(0) e remove(0)\n");
-		l.add(0,s1);
-		l.add(0,s2);
-		l.add(0,s3);
-		l.add(0,s4);
-		l.add(0,s5);
-		
+		l.add(0, s1);
+		l.add(0, s2);
+		l.add(0, s3);
+		l.add(0, s4);
+		l.add(0, s5);
+
 		try {
 			System.out.println(l.get(30));
-		}
-		catch (IndexOutOfBoundsException ex) {
+		} catch (IndexOutOfBoundsException ex) {
 			System.out.println("Não encontrou o elemento de nro 30!!");
 		}
-		
+
 		mostraLista(l);
-		
+
 		l.remove(0);
 		mostraLista(l);
 		l.remove(0);
@@ -93,10 +92,10 @@ public static void mostraLista(ListTAD <String> l)
 		mostraLista(l);
 
 //-------------------------------		
-		
+
 //-------------------------------		
 //		add(i) e remove(i)		
-		
+
 		System.out.println("\n\nadd(i) e remove(i)\n");
 		l.add(0, s1);
 		l.add(1, s5);
@@ -104,7 +103,7 @@ public static void mostraLista(ListTAD <String> l)
 		l.add(2, s4);
 		l.add(1, s2);
 		mostraLista(l);
-					
+
 		l.remove(0);
 		mostraLista(l);
 		l.remove(0);
@@ -115,18 +114,17 @@ public static void mostraLista(ListTAD <String> l)
 		mostraLista(l);
 		l.remove(0);
 		mostraLista(l);
-		
+
 		l.add(0, s4);
 		l.add(0, s1);
 		l.add(2, s5);
 		l.add(1, s3);
 		l.add(1, s2);
 		mostraLista(l);
-		
+
 		try {
 			l.remove(5);
-		}
-		catch (IndexOutOfBoundsException ex){
+		} catch (IndexOutOfBoundsException ex) {
 			System.out.println("Não existe o elemento da pos 5");
 		}
 		mostraLista(l);
@@ -140,6 +138,7 @@ public static void mostraLista(ListTAD <String> l)
 		mostraLista(l);
 		l.remove(0);
 		mostraLista(l);
+	}}
 		
 
 /*-------------------------------		
@@ -176,7 +175,7 @@ public static void mostraLista(ListTAD <String> l)
 				
 /**********
  * Testando Serializable
- */	
+ */	/*
 		System.out.println("\n\nTestando Serializable\n");
 		l.add(0, s1);
 		l.add(1, s5);
@@ -246,4 +245,4 @@ public static void mostraLista(ListTAD <String> l)
 	}
 
 }
-
+*/

@@ -1,6 +1,6 @@
 package br.pucrs.adt;
 
-public class ListSimpleLinked<E> implements ListTAD<E>{
+public class ListSimpleLinkedFull<E> implements ListTAD<E>{
 
     private class Node{                    //Criaçao do Nodo
         private Node refNext;     //Referencia do proximo Nodo
@@ -170,7 +170,7 @@ public class ListSimpleLinked<E> implements ListTAD<E>{
     @Override
     public E get(int pos) {
             E res = null;
-            Node aux;             //AUXILIAR
+            Node aux, ant;             //AUXILIAR
             int i;
 
             if ((pos >= 0) && (pos < qtdElem))      //SE POS ESTA DENTRO DA QDT DA LISTA
@@ -178,7 +178,7 @@ public class ListSimpleLinked<E> implements ListTAD<E>{
                 if(refHead != null)     //SE O INICIAL NAO ESTIVER VAZIO
                 {
                     aux = refHead;                      //AUXILIAR IGUAL AO INICIAL
-                    for(i = 1 ; i <= pos; i++)         //PERCORRE A LISTA ATE A POSIÇAO
+                    for(i = 1 ; i <= pos; i++)          //PERCORRE A LISTA ATE A POSIÇAO
                         aux = aux.getNext();
 
                     res = aux.getElement();            //COLOCA O ELEMENTO DE AUX EM RES
@@ -279,21 +279,63 @@ public class ListSimpleLinked<E> implements ListTAD<E>{
 
     @Override
     public E removeFirst() {
-        return null;
+        E res = null;
+        Node aux;
+
+        if(refHead == null){
+            return null;
+        }
+        else {
+            res = refHead.getElement();
+            aux = refHead.getNext();
+
+            refHead = aux;
+            return res;
+        }
+
     }
 
     @Override
     public E removeLast() {
-        return null;
+        E auxD = null;
+        Node aux;
+
+        if(refHead != null)
+        {
+            if(refHead.getNext() == null)
+            {
+                auxD = refHead.getElement();
+                refHead = null;
+            }
+
+            else
+            {
+                aux = refHead;
+                while(aux.getNext().getNext() != null)
+                    aux = aux.getNext();
+
+                auxD = aux.getNext().getElement();
+                aux.setNext(null);
+            }
+            qtdElem--;
+        }
+        return auxD;
     }
 
     @Override
     public E getFirst() {
-        return null;
+        return refHead.getElement();
     }
+
+
 
     @Override
     public E getLast() {
-        return null;
+        Node aux = refHead, ant;
+       for(int i = 0 ; i < qtdElem; i++){
+           ant = aux;
+           aux = aux.getNext();
+       }
+       return aux.getElement();
     }
 }
